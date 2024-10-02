@@ -1,8 +1,6 @@
 <?php
 namespace Http;
 
-use Http\MiddlewareInterface;
-
 class RouteBehavior {
     private $m_handler;
     private $m_method;
@@ -54,7 +52,7 @@ class RouteBehavior {
         return $this->m_params;
     }
 
-    public function setMiddleware(MiddlewareInterface $mw) {
+    public function setMiddleware($mw) {
         $this->m_middleware = $mw;
     }
 

@@ -44,7 +44,7 @@ class HttpApplication {
 
             // check for middleware
             if ($behavior->hasMiddleware()) {
-                $this->callMiddleware($behavior, $this->m_request);
+                $this->callMiddleware($behavior);
             }
 
             // method params
@@ -89,10 +89,10 @@ class HttpApplication {
         }));
     }
 
-    private function callMiddleware($behavior, $request) {
+    private function callMiddleware($behavior) {
         if ($behavior->hasMiddlewareQue()) {
             foreach ($behavior->getMiddleware() as $it) {
-                $response = call_user_func_array([$it, 'handle'], ['request' => $request]);
+                $response = call_user_func_array([$it, 'handle'], ['request' => $this->m_request]);
              
                 if (NULL !== $response) {
                     return $this->m_response->onNext($response);
@@ -100,7 +100,7 @@ class HttpApplication {
             }
         }
 
-        $response = call_user_func_array([$behavior->getMiddleware(), 'handle'], ['request' => $request]);
+        $response = call_user_func_array([$behavior->getMiddleware(), 'handle'], ['request' => $this->m_request]);
         return $this->m_response->onNext($response);
     }
 }

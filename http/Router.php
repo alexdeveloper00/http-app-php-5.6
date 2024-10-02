@@ -39,7 +39,7 @@ class Router {
         $routes = $this->m_routes;
         $behavior = new RouteBehavior;
 
-        if (is_int($routes) || $routes === 1) {
+        if (!is_array($routes)) {
             return false;
         }
       
