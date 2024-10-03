@@ -5,9 +5,11 @@ use Http\RouteBehavior;
 
 class Router {
     private $m_routes = [];
+    private $m_use_nice_links;
 
-    public function __construct($routes = []) {
+    public function __construct($routes = [], $useNiceLinks = false) {
         $this->m_routes = $routes;
+        $this->m_use_nice_links = $useNiceLinks;
     }
 
     private function checkMatch($sMap, $sUri) {
@@ -45,7 +47,12 @@ class Router {
       
         foreach ($routes as $route) {
             if ($route->hasMap() && $route->hasHandler()) {
-                $uri = strtok($request->getRequestUri(), '?');
+                if ($this->m_use_nice_links) {
+                    $uri = strtok($request->getRequestUri(), '?');
+                } else {
+                    $uri = ($request->query->has('route')) ? $request->query->get('route') : false;
+                }
+                
                 if (!is_string($uri)) return false;
                 
                 $match = $this->checkMatch($route->getMap(), $uri);

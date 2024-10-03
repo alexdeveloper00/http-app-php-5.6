@@ -19,7 +19,7 @@ class HttpApplication {
         global $config;
         $this->m_request = Request::createFromGlobals();
         $this->m_response = new BehaviorSubject(null);
-        $this->m_router = new Router($config['routes']);
+        $this->m_router = new Router($config['routes'], $config['niceLinks']);
 
         $this->response();
     }

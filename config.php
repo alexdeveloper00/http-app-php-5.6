@@ -1,6 +1,7 @@
 <?php 
 
 return [
+    'niceLinks' => true,
     'routes' => require_once 'routes.php',
     'db' => [
         'somedb' => [
