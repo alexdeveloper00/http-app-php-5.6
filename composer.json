@@ -2,11 +2,15 @@
     "require": {
         "php": "^5.6",
         "symfony/http-foundation": "3.4.47",
-        "reactivex/rxphp": "1.5.3"
+        "reactivex/rxphp": "1.5.3",
+        "illuminate/database": "5.2.45"
     },
     "config": {
         "platform": {
             "php": "5.6.31"
+        },
+        "allow-plugins": {
+            "kylekatarnls/update-helper": true
         }
     }
 }

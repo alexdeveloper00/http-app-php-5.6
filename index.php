@@ -20,20 +20,3 @@ use Http\HttpApplication;
 $config = require __DIR__ . '/config.php';
 $app = new HttpApplication;
 return $app->run();
-
-// use Rx\Subject\BehaviorSubject;
-// use Rx\Observer\CallbackObserver;
-
-// $subject = new BehaviorSubject();
-
-// $subject->subscribe(new CallbackObserver(
-//     function ($value) {
-//         $response = new Response($value, 200, [
-//             'Content-Type' => 'text/html'
-//         ]);
-        
-//         $response->send();
-//     }
-// ));
-
-// $subject->onNext('New content');
