@@ -87,7 +87,11 @@ class HttpApplication {
             foreach ($refMethod->getParameters() as $p) {
                 if ($p->getClass()) {
                     $depClass = $p->getClass()->getName();
-                    $depInstance = new $depClass();
+                    if ($depClass === Request::class) {
+                        $depInstance = $this->m_request;
+                    } else {
+                        $depInstance = new $depClass();
+                    }
                     $dependecies[$p->getName()] = $depInstance;
                 }
             }
